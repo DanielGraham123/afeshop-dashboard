@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="app">
-    <signin v-if="!authenticated" />
+    <!-- <signin /> -->
 
     <transition name="fade">
-      <div class="close_chat" v-if="authenticated">
+      <div class="close_chat">
         <md-button
           class="md-icon-button"
           v-if="chat_active"
@@ -15,25 +15,20 @@
     </transition>
 
     <transition name="fade">
-      <div
-        class="togglechat"
-        v-if="!chat_active && authenticated"
-        @click="togglechat()"
-      >
+      <div class="togglechat" v-if="!chat_active" @click="togglechat()">
         <div class="message_num">07</div>
         <img src="./assets/images/visualElement/chat.svg" alt="" />
       </div>
     </transition>
 
     <transition name="fade">
-      <chat v-if="chat_active && authenticated" />
+      <chat v-if="chat_active" />
     </transition>
     <div
       class="side_bar"
       @mouseover="widen()"
       @mouseout="shrink()"
       v-bind:class="widenShrink"
-      v-if="authenticated"
     >
       <div class="logoWrapper">
         <img
@@ -80,7 +75,7 @@
         </router-link>
       </div>
     </div>
-    <div class="container" v-if="authenticated">
+    <div class="container">
       <header_ v-bind:currentRoute="currentRoute" v-on:widen="widen()" />
       <div class="router_home">
         <transition name="fade">
@@ -92,13 +87,13 @@
 </template>
 
 <script>
-import json from './router.json';
-import header_ from './components/header_';
-import chat from './views/chat';
-import signin from './auth/signin';
+import json from "./router.json";
+import header_ from "./components/header_";
+import chat from "./views/chat";
+import signin from "./auth/signin";
 
 export default {
-  name: 'App',
+  name: "App",
   props: {},
   components: {
     header_,
@@ -107,10 +102,10 @@ export default {
   },
   data() {
     return {
-      currentRoute: 'Dashboard',
+      currentRoute: "Dashboard",
       routeitems: json,
       mediaquery: false,
-      widenShrink: '',
+      widenShrink: "",
       chat_active: false,
       authenticated: false,
     };
@@ -119,39 +114,39 @@ export default {
     togglechat() {
       this.chat_active = !this.chat_active;
     },
-    routenavigate: function(routename, id) {
+    routenavigate: function (routename, id) {
       this.currentRoute = `Dashboard ${
-        routename == '' ? '' : '>'
+        routename == "" ? "" : ">"
       } ${routename}`;
 
       //trigerring the active class
       for (let i = 0; i < this.routeitems.length; i++) {
-        this.routeitems[i].active = 'inactive';
+        this.routeitems[i].active = "inactive";
       }
-      this.routeitems[id].active = 'active';
+      this.routeitems[id].active = "active";
     },
-    widen: function() {
+    widen: function () {
       if (window.innerWidth < 800) {
-        this.widenShrink = 'widen';
+        this.widenShrink = "widen";
 
         // SHowing the big logo
-        this.$('.logo_big_screen').style.display = 'block';
-        this.$('.smallScreen_logo').style.display = 'none';
-        this.$('.smallScreen_dasboardTitle').style.display = 'none';
-        this.$('.BigScreen_dasboardTitle').style.display = 'block';
+        this.$(".logo_big_screen").style.display = "block";
+        this.$(".smallScreen_logo").style.display = "none";
+        this.$(".smallScreen_dasboardTitle").style.display = "none";
+        this.$(".BigScreen_dasboardTitle").style.display = "block";
       }
     },
-    shrink: function() {
+    shrink: function () {
       if (window.innerWidth < 800) {
-        this.widenShrink = '';
+        this.widenShrink = "";
         // SHowing the big logo
-        this.$('.logo_big_screen').style.display = 'none';
-        this.$('.smallScreen_logo').style.display = 'block';
-        this.$('.smallScreen_dasboardTitle').style.display = 'block';
-        this.$('.BigScreen_dasboardTitle').style.display = 'none';
+        this.$(".logo_big_screen").style.display = "none";
+        this.$(".smallScreen_logo").style.display = "block";
+        this.$(".smallScreen_dasboardTitle").style.display = "block";
+        this.$(".BigScreen_dasboardTitle").style.display = "none";
       }
     },
-    $: function(target) {
+    $: function (target) {
       return document.querySelector(target);
     },
   },
@@ -398,7 +393,7 @@ a {
   .side_bar {
     top: 0;
     left: 0px;
-    content: 'dessus';
+    content: "dessus";
     width: 73px;
     z-index: 5;
   }
