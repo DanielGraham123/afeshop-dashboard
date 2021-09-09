@@ -13,7 +13,7 @@
           alt=""
           width="200px"
         />
-        <p style="font-size:16px;margin:10px 0px;">Welcome to Afeshop</p>
+        <p style="font-size: 16px; margin: 10px 0px">Welcome to Afeshop</p>
         <h2>Sign In</h2>
         <div class="formContainer">
           <div>
@@ -34,7 +34,7 @@
 
         <md-button
           class="md-raised md-primary"
-          style="box-shadow:initial;border-radius:65px;"
+          style="box-shadow: initial; border-radius: 65px"
           @click="signIn()"
           >Sign in</md-button
         >
@@ -44,7 +44,7 @@
           md-mode="indeterminate"
           v-if="api_loading"
         ></md-progress-spinner>
-        <p style="margin:10px 0px;">
+        <p style="margin: 10px 0px">
           Don't have a account yet?
           <span class="createAccount" @click="openRegisterScrenn()"
             >create your account here</span
@@ -68,16 +68,16 @@
 </template>
 <script>
 /* eslint-disable */
-import register from './register';
+import register from "./register";
 export default {
-  name: 'signin',
+  name: "signin",
   data() {
     return {
       email_phone: null,
       password: null,
       registerActive: false,
       showSnackbar: false,
-      error_message: '',
+      error_message: "",
       api_loading: false,
     };
   },
@@ -86,40 +86,40 @@ export default {
   },
 
   methods: {
-    openRegisterScrenn: function() {
+    openRegisterScrenn: function () {
       this.registerActive = true;
     },
-    ShowSiginScreen: function() {
+    ShowSiginScreen: function () {
       this.registerActive = false;
     },
-    // signIn: function() {
-    //   this.showSnackbar = true;
-    //   console.log(this.email_phone);
-    //   console.log(this.password);
+    signIn: function () {
+      this.showSnackbar = true;
+      console.log(this.email_phone);
+      console.log(this.password);
 
-    //   var req = new XMLHttpRequest();
-    //   var data = new FormData();
-    //   data.append('email', this.email_phone);
-    //   data.append('password', this.password);
+      var req = new XMLHttpRequest();
+      var data = new FormData();
+      data.append("email", this.email_phone);
+      data.append("password", this.password);
 
-    //   let that = this;
-    //   this.api_loading = true;
+      let that = this;
+      this.api_loading = true;
 
-    //   req.open('POST', 'http://afeshop.africa/app/api/route237/login');
-    //   req.onload = function() {
-    //     let res = {};
-    //     res = JSON.parse(this.responseText);
-    //     if (res.hasOwnProperty('message')) {
-    //       that.api_loading = false;
-    //       that.error_message = res.message;
-    //     } else {
-    //       that.api_loading = false;
-    //       that.error_message = res.msg.email[0];
-    //     }
-    //   };
+      req.open("POST", "http://afeshop.africa/app/api/route237/login");
+      req.onload = function () {
+        let res = {};
+        res = JSON.parse(this.responseText);
+        if (res.hasOwnProperty("message")) {
+          that.api_loading = false;
+          that.error_message = res.message;
+        } else {
+          that.api_loading = false;
+          that.error_message = res.msg.email[0];
+        }
+      };
 
-    //   req.send(data);
-    // },
+      req.send(data);
+    },
   },
 };
 </script>

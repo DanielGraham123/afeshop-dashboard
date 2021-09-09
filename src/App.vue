@@ -90,7 +90,7 @@
 import json from "./router.json";
 import header_ from "./components/header_";
 import chat from "./views/chat";
-import signin from "./auth/signin";
+// import signin from "./auth/signin";
 
 export default {
   name: "App",
@@ -98,7 +98,7 @@ export default {
   components: {
     header_,
     chat,
-    signin,
+    // signin,
   },
   data() {
     return {
