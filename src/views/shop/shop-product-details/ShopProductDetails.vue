@@ -116,28 +116,27 @@
 
             <div class="d-flex flex-column flex-sm-row pt-1">
               <b-button
-                v-ripple.400="'rgba(255, 255, 255, 0.15)'"
-                variant="primary"
-                class="btn-delete mr-0 mr-sm-1 mb-1 mb-sm-0"
-                @click="handleCartActionClick(product)"
-              >
-                <feather-icon icon="ShoppingCartIcon" class="mr-50" />
-                <span>{{
-                  product.isInCart ? "View In Cart" : "Add to Cart"
-                }}</span>
-              </b-button>
-              <b-button
-                variant="outline-secondary"
+                variant="outline-primary"
                 class="btn-edit mr-0 mr-sm-1 mb-1 mb-sm-0"
                 @click="toggleProductInWishlist(product)"
               >
                 <feather-icon
-                  icon="HeartIcon"
+                  icon="EditIcon"
                   class="mr-50"
                   :class="{ 'text-danger': product.isInWishlist }"
                 />
-                <span>Wishlist</span>
+                <span>Edit</span>
               </b-button>
+              <b-button
+                v-ripple.400="'rgba(255, 255, 255, 0.15)'"
+                variant="danger"
+                class="btn-delete mr-0 mr-sm-1 mb-1 mb-sm-0"
+                @click="handleCartActionClick(product)"
+              >
+                <feather-icon icon="Trash2Icon" class="mr-50" />
+                <span>Delete</span>
+              </b-button>
+
               <b-dropdown
                 variant="outline-secondary"
                 no-caret
